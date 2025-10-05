@@ -485,6 +485,7 @@ class FastLanguageModel(FastLlamaModel):
                 "load_in_8bit"                     : False,
                 "quant_method"                     : "bitsandbytes",
             }
+            print("!!! HEY, I AM USING YOUR PATCHED UNLOTH FORK !!!"),
             model.config.update({"quantization_config" : quantization_config})
         pass
 
@@ -969,6 +970,7 @@ class FastModel(FastBaseModel):
                 "load_in_8bit"                     : False,
                 "quant_method"                     : "bitsandbytes",
             }
+            print("!!! HEY, I AM USING YOUR PATCHED UNLOTH FORK !!!"),
             model.config.update({"quantization_config" : quantization_config})
         pass
 
