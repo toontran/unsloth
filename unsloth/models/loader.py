@@ -468,7 +468,8 @@ class FastLanguageModel(FastLlamaModel):
             tokenizer.add_model_tags(["unsloth",])
         pass
 
-        if load_in_4bit:
+        model_types_all = ",".join(get_transformers_model_type(model.config)) + ","
+        if load_in_4bit and "gpt_oss" not in model_types_all:
             # Fix up bitsandbytes config
             compute_dtype = dtype_from_config(model.config)
             quantization_config = \
@@ -477,7 +478,7 @@ class FastLanguageModel(FastLlamaModel):
                 "bnb_4bit_compute_dtype"           : compute_dtype,
                 "bnb_4bit_quant_type"              : "nf4",
                 "bnb_4bit_use_double_quant"        : True,
-                "llm_int8_enable_fp32_cpu_offload" : llm_int8_enable_fp32_cpu_offload,
+                "llm_int8_enable_fp32_cpu_offload" : False,#llm_int8_enable_fp32_cpu_offload,
                 "llm_int8_has_fp16_weight"         : False,
                 "llm_int8_skip_modules"            : None,
                 "llm_int8_threshold"               : 6.0,
@@ -953,7 +954,8 @@ class FastModel(FastBaseModel):
             tokenizer.add_model_tags(["unsloth",])
         pass
 
-        if load_in_4bit:
+        #model_types_all = ",".join(get_transformers_model_type(model.config)) + ","
+        if load_in_4bit and "gpt_oss" not in model_types_all:
             # Fix up bitsandbytes config
             compute_dtype = dtype_from_config(model.config)
             quantization_config = \
