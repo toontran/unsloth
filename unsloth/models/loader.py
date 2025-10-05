@@ -477,7 +477,7 @@ class FastLanguageModel(FastLlamaModel):
                 "bnb_4bit_compute_dtype"           : compute_dtype,
                 "bnb_4bit_quant_type"              : "nf4",
                 "bnb_4bit_use_double_quant"        : True,
-                "llm_int8_enable_fp32_cpu_offload" : False,
+                "llm_int8_enable_fp32_cpu_offload" : llm_int8_enable_fp32_cpu_offload,
                 "llm_int8_has_fp16_weight"         : False,
                 "llm_int8_skip_modules"            : None,
                 "llm_int8_threshold"               : 6.0,
