@@ -539,6 +539,10 @@ class FastBaseModel:
 
         raise_handler = RaiseUninitialized()
         if not fast_inference:
+            # =================================================================
+            # CATCH AND REMOVE the problematic kwarg before the final call.
+            # This satisfies the internal validators but prevents the final crash.
+            kwargs.pop("llm_int8_enable_fp32_cpu_offload", None)
             model = auto_model.from_pretrained(
                 model_name,
                 device_map              = device_map,
